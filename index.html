@@ -414,7 +414,23 @@
             var mes_hoje = meses[horario.getMonth()];
             var ano_hoje = horario.getFullYear();
     
-            
+            if(parseInt($("#necessidade_novos").val()) == 5){$("#nickname_aprov").val('Não houveram aprovados')}else{
+                var entradas = document.getElementById('nickname_aprov').value.split('/');
+                var lista = '';
+                    entradas.forEach(function(nickname){
+                        nickname = nickname.replace(' ','');
+                        lista = lista + "\n • [b]" + nickname + '[/b] - ' + data_hoje + ' ' + mes_hoje + ' ' + ano_hoje;
+                    });
+                if(document.getElementById('necessidade_novos').value == 1){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no subfórum.[/color]"}
+                if(document.getElementById('necessidade_novos').value == 2){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no emblema.[/color]"}
+                if(document.getElementById('necessidade_novos').value == 3){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no subfórum e no emblema.[/color]"}
+                if(document.getElementById('necessidade_novos').value == 4){var necessidade = "[color=green][b]✓[/b] Policiais já adicionados no emblema e subfórum.[/color]"}
+                var texto = 
+                    "[font=Lexend Deca][size=15][color=#263b32][b]ENTRADA DE MEMBROS[/b][/color][/size]\n" + lista + "\n\n" + necessidade + "[/font]";
+                            
+                document.getElementById('fa-generated-message').value = texto;
+            };
+    
             var form = document.getElementById("postagem_testes_forms");
             var link_url = 'https://script.google.com/macros/s/AKfycbyNRhzBQFkmYMw_tNZlkrgrgKdYqeoXPj30X2Oo8wAlxDgsm2ZM9TdFUJdMPy-AMmvF/exec';
     
